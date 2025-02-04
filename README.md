@@ -1,7 +1,7 @@
 # flutter-project-r411
 
-member of project :
+## members of project :
 
-Kinator : Behani Julien
-Fydyr : Fournier Enzo
-alluinedouard : Alluin Edouard
+Kinator : Behani Julien\n
+Fydyr : Fournier Enzo\n
+alluinedouard : Alluin Edouard\n
