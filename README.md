@@ -2,6 +2,6 @@
 
 ## members of project :
 
-[Kinator](https://github.com/Fydyr) : Behani Julien
+[Kinator](https://github.com/Kinator) : Behani Julien
 [Fydyr](https://github.com/Fydyr) : Fournier Enzo
-[alluinedouard](https://github.com/Fydyr) : Alluin Edouard
+[alluinedouard](https://github.com/alluinedouard) : Alluin Edouard
