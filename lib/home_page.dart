@@ -26,9 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fit: BoxFit.cover
             )
         ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
 
-        child: Scaffold(
-        ),
+          child: Text("fdsf"),
       ),
     );
   }
