@@ -15,10 +15,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -26,10 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fit: BoxFit.cover
             )
         ),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
 
-          child: Text("fdsf"),
+        child: null,
       ),
     );
   }
