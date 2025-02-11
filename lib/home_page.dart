@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_r411/widgets/button.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -25,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
 
-        child: null,
+        child: button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test"),
       ),
     );
   }

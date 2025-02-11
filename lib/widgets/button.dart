@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class button extends StatelessWidget {
-  const button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, required this.width, required this.height});
+  const button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, this.width, this.height});
 
   final Color colorBackground;
   final Color colorText;
   final String text;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPressed;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
