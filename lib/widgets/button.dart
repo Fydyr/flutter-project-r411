@@ -20,8 +20,10 @@ class button extends StatelessWidget {
           backgroundColor: colorBackground,
           foregroundColor: colorText,
           elevation: 2,
+          textStyle: const TextStyle(fontSize: 20),
         ),
         child: Text(text),
+
     );
   }
 }
