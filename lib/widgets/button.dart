@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  const Button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, this.width, this.height});
+  const Button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, this.width=100, this.height=50});
 
   final Color colorBackground;
   final Color colorText;
@@ -14,8 +14,8 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width == 30 ? null : width,  // Appliquer la largeur
-      height: height == 30 ? null : height, // Appliquer la hauteur
+      height: height,
+      width: width,
       child: ElevatedButton(
         onPressed: () => onPressed == null ? null : onPressed!(),
         onLongPress: () => onLongPressed == null ? null : onLongPressed!(),
@@ -26,6 +26,7 @@ class Button extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 20),
         ),
         child: Text(text),
+
       ),
     );
   }
