@@ -13,7 +13,10 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return SizedBox(
+      width: width == 30 ? null : width,  // Appliquer la largeur
+      height: height == 30 ? null : height, // Appliquer la hauteur
+      child: ElevatedButton(
         onPressed: () => onPressed == null ? null : onPressed!(),
         onLongPress: () => onLongPressed == null ? null : onLongPressed!(),
         style: ElevatedButton.styleFrom(
@@ -23,7 +26,7 @@ class Button extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 20),
         ),
         child: Text(text),
-
+      ),
     );
   }
 }
