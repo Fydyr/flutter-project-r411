@@ -18,7 +18,13 @@ class MyHomePage extends ConsumerWidget {
       children: [
         Background(),
         Center(
-          child: Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test", height: 512, width: 128, onPressed: store.getValues),
+          child: Row(
+            children: [
+              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "getAll", height: 512, width: 128, onPressed: store.getValues),
+              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get1", height: 512, width: 128, onPressed: store.get1),
+              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get3", height: 512, width: 128, onPressed: store.get3),
+            ],
+          ),
         ),
       ],
     );

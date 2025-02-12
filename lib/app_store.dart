@@ -18,6 +18,14 @@ class AppStore extends StateNotifier<AppStoreState> {
     print("getValues");
     api.getPokemonCards();
   }
+  void get1(){
+    print("get1");
+    api.getPokemonCard(1);
+  }
+  void get3(){
+    print("get3");
+    api.getPokemonCard(3);
+  }
 }
 
 // Cette classe représente l'état du cache des équipes
