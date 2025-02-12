@@ -19,8 +19,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Stack(
       children: [
-        Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test"),
         Background(),
+        Center(
+          child: Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test", height: 512, width: 128,),
+        ),
       ],
     );
   }
