@@ -14,17 +14,13 @@ class AppStore extends StateNotifier<AppStoreState> {
 
   final ApiHelper api;
 
-  void getValues(){
+  void getPokemonCards(){
     print("getValues");
     api.getPokemonCards();
   }
-  void get1(){
-    print("get1");
-    api.getPokemonCard(1);
-  }
-  void get3(){
-    print("get3");
-    api.getPokemonCard(3);
+  void getPokemonCard(int id){
+    print("get$id");
+    api.getPokemonCard(id);
   }
 }
 
