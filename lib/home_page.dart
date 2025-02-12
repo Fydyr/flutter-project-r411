@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
 
-        child: button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test"),
+        child: Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "Test"),
       ),
     );
   }

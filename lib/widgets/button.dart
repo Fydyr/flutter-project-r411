@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class button extends StatelessWidget {
-  const button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, this.width, this.height});
+class Button extends StatelessWidget {
+  const Button({super.key, required this.colorBackground, required this.colorText, required this.text, this.onPressed, this.onLongPressed, this.width, this.height});
 
   final Color colorBackground;
   final Color colorText;
