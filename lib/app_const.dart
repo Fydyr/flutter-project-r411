@@ -1,11 +1,12 @@
 class AppConst{
-  static const double weightMin = 50;
-  static const double weightMax = 200;
-  static const double heightMin = 50;
-  static const double heightMax = 250;
-  static const double weightDefault = 80;
-  static const double heightDefault = 180;
-
-  static const String weightKey = 'prefs_weight_key';
-  static const String heightKey = 'prefs_height_key';
+  static const String PokemonCardName = 'name';
+  static const int PokemonPokedexId = 1;
+  static const int PokemonTypeId1 = 2;
+  static const int PokemonTypeId2 = 5;
+  static const int PokemonTypeIdWeakness = 3;
+  static const int PokemonAttackId = 1;
+  static const int PokemonLifePoints = 50;
+  static const double PokemonSize = 1.2;
+  static const double PokemonHeight = 1.2;
+  static const String PokemonUrl = 'URL';
 }

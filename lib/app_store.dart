@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_project_r411/app_const.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
 final appStoreProvider =
@@ -15,11 +14,11 @@ class AppStore extends StateNotifier<AppStoreState> {
   final ApiHelper api;
 
   void getPokemonCards(){
-    print("getValues");
+    print("Get all cards");
     api.getPokemonCards();
   }
   void getPokemonCard(int id){
-    print("get$id");
+    print("Get card N°$id");
     api.getPokemonCard(id);
   }
 }
@@ -27,24 +26,18 @@ class AppStore extends StateNotifier<AppStoreState> {
 // Cette classe représente l'état du cache des équipes
 class AppStoreState {
   // Variables
-  final double weightKg;
-  final double heightCm;
 
   // Constructeur
-  AppStoreState({
-    this.weightKg = AppConst.weightDefault,
-    this.heightCm = AppConst.heightDefault
-  });
+  AppStoreState();
 
   factory AppStoreState.init() {
     return AppStoreState();
   }
 
   // Permet de modifier le state
-  AppStoreState copyWith({double? weightKg, double? heightCm}) {
+  AppStoreState copyWith() {
     return AppStoreState(
-        weightKg: weightKg ?? this.weightKg,
-        heightCm: heightCm ?? this.heightCm
+
     );
   }
 }

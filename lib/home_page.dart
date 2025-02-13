@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'app_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
@@ -16,15 +17,20 @@ class MyHomePage extends ConsumerWidget {
 
     return Stack(
       children: [
-        Background(),
-        Center(
-          child: Row(
-            children: [
-              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "getAll", height: 512, width: 128, onPressed: store.getPokemonCards),
-              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get1", height: 512, width: 128, onPressed: ()=>{store.getPokemonCard(1)}),
-              Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get3", height: 512, width: 128, onPressed: ()=>{store.getPokemonCard(3)}),
-            ],
-          ),
+        AppBackground(name: "background_screen_title.jpg"),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PokemonCard(cardSize: 500),
+            SizedBox(height: 30),
+            Row(
+              children: [
+                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "getAll", height: 70, width: 128, onPressed: store.getPokemonCards),
+                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get1", height: 70, width: 128, onPressed: ()=>{store.getPokemonCard(1)}),
+                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get3", height: 70, width: 128, onPressed: ()=>{store.getPokemonCard(3)}),
+              ],
+            ),
+          ],
         ),
       ],
     );
