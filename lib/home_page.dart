@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
+import 'widgets/card_pack.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyHomePage extends ConsumerWidget {
