@@ -19,7 +19,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(final BuildContext context) {
     final AppStore store = ref.read(appStoreProvider.notifier);
-    PokemonCard card = PokemonCard(cardSize: 500);
 
     Future? f;
 
@@ -29,23 +28,32 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PokemonCard(cardSize: 500),
-            /*FutureBuilder(future: f, builder: (context, snap){
+            FutureBuilder(future: f, builder: (context, snap){
 
-              if(!snap.hasData){
-                return CircularProgressIndicator();
-              }
 
               if(snap.hasError){
                 return PokemonCard(cardSize: 500, data: PokemonData());
               }
 
+              if(!snap.hasData){
+                return CircularProgressIndicator();
+              }
+
+
               var data = PokemonData(
-                name: snap.data['name']
+                name: snap.data['name'],
+                pokedexId: snap.data['pokedexId'],
+                typeId1: snap.data['typeId1'],
+                typeIdWeakness: snap.data['typeIdWeakness'],
+                attackId: snap.data['attackId'],
+                lifePoints: snap.data['lifePoints'],
+                size: snap.data['size'],
+                weight: snap.data['weight'],
+                url: snap.data['url']
               );
 
-              return PokemonCard(cardSize: 500, data:data);
-            }),*/
+              return PokemonCard(cardSize: 500, data: data);
+            }),
             SizedBox(height: 30),
             Row(
               children: [
