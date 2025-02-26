@@ -11,13 +11,13 @@ class ApiHelper {
   ApiHelper({required this.dio});
   final Dio dio;
 
-  Future<Response> getPokemonCards() {
+  Future<Response> getPokemonCards() async {
     final url = 'http://88.173.86.254:37391/pokemon-cards/';
 
     return dio.get(url);
   }
 
-  Future<Response> getPokemonCardId(int id) {
+  Future<Response> getPokemonCardId(int id) async {
     final url = 'http://88.173.86.254:37391/pokemon-cards/$id';
 
     return dio.get(url);
@@ -29,7 +29,7 @@ class ApiHelper {
     return dio.get(url);
   }
 
-  void getPokemonTypesId(int id) {
+  void getPokemonTypesId(int id) async {
     final url = 'http://88.173.86.254:37391/pokemon-types/$id';
 
     final Future<Response> response = dio.get(url);
@@ -48,7 +48,7 @@ class ApiHelper {
     });
   }
 
-  void getPokemonAttacks() {
+  void getPokemonAttacks() async {
     final url = 'http://88.173.86.254:37391/pokemon-attacks';
 
     final Future<Response> response = dio.get(url);
@@ -67,7 +67,7 @@ class ApiHelper {
     });
   }
 
-  void getPokemonAttacksId(int id) {
+  void getPokemonAttacksId(int id) async {
     final url = 'http://88.173.86.254:37391/pokemon-attacks/$id';
 
     final Future<Response> response = dio.get(url);
@@ -86,7 +86,7 @@ class ApiHelper {
     });
   }
 
-  void getCollections() {
+  void getCollections() async {
     final url = 'http://88.173.86.254:37391/decks';
 
     final Future<Response> response = dio.get(url);
@@ -105,7 +105,7 @@ class ApiHelper {
     });
   }
 
-  void getCollectionId(int id) {
+  void getCollectionId(int id) async {
     final url = 'http://88.173.86.254:37391/decks/$id';
 
     final Future<Response> response = dio.get(url);
@@ -125,7 +125,7 @@ class ApiHelper {
     });
   }
 
-  void createUser(String email, String password) {
+  void createUser(String email, String password) async {
     final url = 'http://88.173.86.254:37391/users';
 
     final Future<Response> response =
@@ -144,7 +144,7 @@ class ApiHelper {
     });
   }
 
-  void loginUser(String email, String password) {
+  void loginUser(String email, String password) async {
     final url = 'http://88.173.86.254:37391/users/login';
 
     final Future<Response> response =
@@ -163,7 +163,7 @@ class ApiHelper {
     });
   }
 
-  void getUsers() {
+  void getUsers() async {
     final url = 'http://88.173.86.254:37391/users';
 
     final Future<Response> response = dio.get(url);
@@ -183,7 +183,7 @@ class ApiHelper {
   }
 
   void postCollection(
-      String token, String name, int ownerId, List<int> pokemonIds) {
+      String token, String name, int ownerId, List<int> pokemonIds) async {
     final url = 'http://88.173.86.254:37391/decks';
 
     final Future<Response> response = dio.post(url,
@@ -203,7 +203,7 @@ class ApiHelper {
     });
   }
 
-  void getDeckId(int id) {
+  void getDeckId(int id) async {
     final url = 'http://88.173.86.254:37391/decks/$id';
 
     final Future<Response> response = dio.get(url);
@@ -221,7 +221,7 @@ class ApiHelper {
     });
   }
 
-  void updateDeck(String token, int id, String name, int ownerId, List<int> pokemonIds) {
+  void updateDeck(String token, int id, String name, int ownerId, List<int> pokemonIds) async {
     final url = 'http://88.173.86.254:37391/decks/$id';
 
     final Future<Response> response = dio.put(url,
@@ -229,7 +229,7 @@ class ApiHelper {
         options: Options(headers: {"Authorization": "Bearer $token"}));
   }
 
-  void deleteDeck(String token, int id) {
+  void deleteDeck(String token, int id) async {
     final url = 'http://88.173.86.254:37391/decks/$id';
 
     final Future<Response> response = dio.delete(url,

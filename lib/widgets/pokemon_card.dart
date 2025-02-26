@@ -9,19 +9,20 @@ class PokemonCard extends StatelessWidget {
   });
 
   final double cardSize;
-  final String name = AppConst.PokemonCardName;
-  final int pokedexId = AppConst.PokemonPokedexId;
-  final int typeId1 = AppConst.PokemonTypeId1;
-  final int typeId2 = AppConst.PokemonTypeId2;
-  final int typeIdWeakness = AppConst.PokemonTypeIdWeakness;
-  final int attackId = AppConst.PokemonAttackId;
-  final int lifePoints = AppConst.PokemonLifePoints;
-  final double size = AppConst.PokemonSize;
-  final double height = AppConst.PokemonHeight;
-  final String url = AppConst.PokemonUrl;
 
   @override
   Widget build(BuildContext context) {
+    final String name = AppConst.PokemonCardName;
+    final int pokedexId = AppConst.PokemonPokedexId;
+    final int typeId1 = AppConst.PokemonTypeId1;
+    final int typeId2 = AppConst.PokemonTypeId2;
+    final int typeIdWeakness = AppConst.PokemonTypeIdWeakness;
+    final int attackId = AppConst.PokemonAttackId;
+    final int lifePoints = AppConst.PokemonLifePoints;
+    final double size = AppConst.PokemonSize;
+    final double weight = AppConst.PokemonWeight;
+    final String url = AppConst.PokemonUrl;
+
     return CardBackground(
       height: cardSize,
       width: cardSize / 1.75,

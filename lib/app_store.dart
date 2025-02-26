@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
@@ -48,34 +50,8 @@ class AppStore extends StateNotifier<AppStoreState> {
     });
   }
 
-  void getPokemonCardId(int id){
-    print("Get card N°$id");
-    api.getPokemonCardId(id)
-        .then((r) {
-      print(r.statusCode);
-
-      var data = {
-        "id": r.data["id"],
-        "name": r.data["name"],
-        "pokedexId": r.data["pokedexId"],
-        "typeId1": r.data["typeId1"],
-        "typeIdWeakness": r.data["typeIdWeakness"],
-        "attackId": r.data["attackId"],
-        "lifePoints": r.data["lifePoints"],
-        "size": r.data["size"],
-        "weight": r.data["weight"],
-        "imageUrl": r.data["imageUrl"]
-      };
-      print(data);
-      return data;
-    })
-        .catchError((e) {
-      if(e.response.statusCode == 404){
-        var data = {"error" : "Pokemon not found"};
-        print(data);
-        return data;
-      }
-    });
+  Future<Response> getPokemonCardId(int id) async {
+    return api.getPokemonCardId(id);
   }
 
   void getPokemonTypes(){
