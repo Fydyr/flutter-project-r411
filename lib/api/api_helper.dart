@@ -19,7 +19,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as List<dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -31,7 +31,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -43,7 +43,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as List<dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -55,7 +55,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -67,7 +67,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as List<dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -79,7 +79,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -91,7 +91,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as List<dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -104,7 +104,7 @@ class ApiHelper {
       print(r.statusCode);
 
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -116,7 +116,7 @@ class ApiHelper {
     response.then((r) {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -128,7 +128,7 @@ class ApiHelper {
     response.then((r) {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -140,7 +140,7 @@ class ApiHelper {
     response.then((r) {
       print(r.statusCode);
       var data = r.data as List<dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -154,7 +154,7 @@ class ApiHelper {
     response.then((r) {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 
@@ -165,7 +165,7 @@ class ApiHelper {
     response.then((r) {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
-      print(data);
+      return data;
     });
   }
 

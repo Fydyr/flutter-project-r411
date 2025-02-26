@@ -17,9 +17,9 @@ class AppStore extends StateNotifier<AppStoreState> {
     print("Get all cards");
     api.getPokemonCards();
   }
-  void getPokemonCard(int id){
+  void getPokemonCardId(int id){
     print("Get card N°$id");
-    api.getPokemonAttacksId(id);
+    api.getPokemonCardId(id);
   }
 }
 
