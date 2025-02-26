@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_r411/app_const.dart';
+import 'package:flutter_project_r411/pokemon_data.dart';
 import 'package:flutter_project_r411/widgets/background.dart';
 
 class PokemonCard extends StatelessWidget {
   const PokemonCard({
     super.key,
     required this.cardSize,
+    required this.data,
   });
 
   final double cardSize;
+  final PokemonData data;
 
   @override
   Widget build(BuildContext context) {
-    final String name = AppConst.PokemonCardName;
-    final int pokedexId = AppConst.PokemonPokedexId;
-    final int typeId1 = AppConst.PokemonTypeId1;
-    final int typeId2 = AppConst.PokemonTypeId2;
-    final int typeIdWeakness = AppConst.PokemonTypeIdWeakness;
-    final int attackId = AppConst.PokemonAttackId;
-    final int lifePoints = AppConst.PokemonLifePoints;
-    final double size = AppConst.PokemonSize;
-    final double weight = AppConst.PokemonWeight;
-    final String url = AppConst.PokemonUrl;
-
     return CardBackground(
       height: cardSize,
       width: cardSize / 1.75,
@@ -37,12 +28,12 @@ class PokemonCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    name,
+                    data.name,
                     style: TextStyle(fontSize: cardSize * 0.04, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Text(
-                  "PV $lifePoints",
+                  "PV ${data.lifePoints}",
                   style: TextStyle(fontSize: cardSize * 0.04, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(width: cardSize * 0.02),
@@ -56,7 +47,7 @@ class PokemonCard extends StatelessWidget {
 
             // --- Image du Pokémon ---
             Expanded(
-              child: Image.network(url, fit: BoxFit.contain),
+              child: Image.network(data.url, fit: BoxFit.contain),
             ),
             SizedBox(height: cardSize * 0.02),
 
@@ -70,16 +61,16 @@ class PokemonCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "$name",
+                    "${data.name}",
                     style: TextStyle(fontSize: cardSize * 0.05, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: cardSize * 0.01),
                   Text(
-                    "Morsure: $attackId",
+                    "Morsure: ${data.attackId}",
                     style: TextStyle(fontSize: cardSize * 0.040),
                   ),
                   Text(
-                    "Tornade: $attackId",
+                    "Tornade: ${data.attackId}",
                     style: TextStyle(fontSize: cardSize * 0.040),
                   ),
                   SizedBox(height: cardSize * 0.25),
