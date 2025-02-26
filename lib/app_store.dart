@@ -26,6 +26,7 @@ class AppStore extends StateNotifier<AppStoreState> {
 // Cette classe représente l'état du cache des équipes
 class AppStoreState {
   // Variables
+  String token = '';
 
   // Constructeur
   AppStoreState();
