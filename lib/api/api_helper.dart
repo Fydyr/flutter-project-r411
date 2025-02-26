@@ -11,40 +11,22 @@ class ApiHelper {
   ApiHelper({required this.dio});
   final Dio dio;
 
-  void getPokemonCards() {
+  Future<Response> getPokemonCards() {
     final url = 'http://88.173.86.254:37391/pokemon-cards/';
 
-    final Future<Response> response = dio.get(url);
-    response.then((r) {
-      print(r.statusCode);
-
-      var data = r.data as List<dynamic>;
-      return data;
-    });
+    return dio.get(url);
   }
 
-  void getPokemonCardId(int id) {
+  Future<Response> getPokemonCardId(int id) {
     final url = 'http://88.173.86.254:37391/pokemon-cards/$id';
 
-    final Future<Response> response = dio.get(url);
-    response.then((r) {
-      print(r.statusCode);
-
-      var data = r.data as Map<String, dynamic>;
-      return data;
-    });
+    return dio.get(url);
   }
 
-  void getPokemonTypes() {
+  Future<Response> getPokemonTypes() async {
     final url = 'http://88.173.86.254:37391/pokemon-types';
 
-    final Future<Response> response = dio.get(url);
-    response.then((r) {
-      print(r.statusCode);
-
-      var data = r.data as List<dynamic>;
-      return data;
-    });
+    return dio.get(url);
   }
 
   void getPokemonTypesId(int id) {
@@ -56,6 +38,13 @@ class ApiHelper {
 
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -68,6 +57,13 @@ class ApiHelper {
 
       var data = r.data as List<dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -80,6 +76,13 @@ class ApiHelper {
 
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -92,6 +95,13 @@ class ApiHelper {
 
       var data = r.data as List<dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -105,6 +115,13 @@ class ApiHelper {
 
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -117,6 +134,13 @@ class ApiHelper {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -129,6 +153,13 @@ class ApiHelper {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -141,6 +172,13 @@ class ApiHelper {
       print(r.statusCode);
       var data = r.data as List<dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -155,6 +193,13 @@ class ApiHelper {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
@@ -166,11 +211,17 @@ class ApiHelper {
       print(r.statusCode);
       var data = r.data as Map<String, dynamic>;
       return data;
+    })
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        var data = {"error" : "Pokemon not found"};
+        print(data);
+        return data;
+      }
     });
   }
 
-  void updateDeck(
-      String token, int id, String name, int ownerId, List<int> pokemonIds) {
+  void updateDeck(String token, int id, String name, int ownerId, List<int> pokemonIds) {
     final url = 'http://88.173.86.254:37391/decks/$id';
 
     final Future<Response> response = dio.put(url,

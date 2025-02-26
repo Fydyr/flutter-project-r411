@@ -27,8 +27,8 @@ class MyHomePage extends ConsumerWidget {
             Row(
               children: [
                 Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "getAll", height: 70, width: 128, onPressed: store.getPokemonCards),
-                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get1", height: 70, width: 128, onPressed: ()=>{store.getPokemonCardId(1)}),
-                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get3", height: 70, width: 128, onPressed: ()=>{store.getPokemonCardId(3)}),
+                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get1", height: 70, width: 128, onPressed: ()=>{store.getPokemonTypes()}),
+                Button(colorBackground: Colors.blueGrey, colorText: Colors.white, text: "get3", height: 70, width: 128, onPressed: ()=>{store.getPokemonCardId(-1)}),
               ],
             ),
           ],
