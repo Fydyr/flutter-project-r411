@@ -38,7 +38,7 @@ class CardBackground extends StatelessWidget {
             color: Colors.black38,
             width: 3,
           ),
-          borderRadius: BorderRadius.circular(50)
+          borderRadius: BorderRadius.circular(25)
       ),
       height: height,
       width: width,
