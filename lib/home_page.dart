@@ -16,6 +16,7 @@ class MyHomePage extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) {
     final PokemonStore store = ref.read(pokemonStoreProvider.notifier);
     final PokemonStoreState state = ref.watch(pokemonStoreProvider);
+    store.getPokemonCards();
 
     return Stack(
       children: [

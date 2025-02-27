@@ -1,6 +1,5 @@
-import 'package:dio/dio.dart';
+import 'dart:math';
 import 'package:flutter_project_r411/pokemon_data.dart';
-import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
@@ -18,47 +17,12 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
 
   void getPokemonCards(){
     print("Get all cards");
-    api.getPokemonCards()
-        .then((r) {
-      print(r.statusCode);
-
-      var data = [];
-      r.data.forEach( (pokemon) {
-        data.add({
-          "id": pokemon["id"],
-          "name": pokemon["name"],
-          "pokedexId": pokemon["pokedexId"],
-          "typeId1": pokemon["typeId1"],
-          "typeId2": pokemon["typeId2"],
-          "typeIdWeakness": pokemon["typeIdWeakness"],
-          "attackId": pokemon["attackId"],
-          "lifePoints": pokemon["lifePoints"],
-          "size": pokemon["size"],
-          "weight": pokemon["weight"],
-          "imageUrl": pokemon["imageUrl"]
-        });
-      });
-
-      print(data);
-      return data;
-    })
-        .catchError((e) {
-      if(e.response.statusCode == 404){
-        var data = {"error" : "Pokemon not found"};
-        print(data);
-        return data;
-      }
-    });
-  }
-
-  void getPokemonCardId(int id) async {
-    api.getPokemonCardId(id).then((r) {
+    api.getPokemonCards().then((r) {
       List<PokemonData> pokemons = [];
 
       state.pokemons.forEach((pokemon) {
         pokemons.add(pokemon);
-      }
-      );
+      });
 
       pokemons.add(PokemonData(
           id: r.data["id"],
@@ -73,6 +37,28 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
           imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
       ));
       state = state.copyWith(pokemons: pokemons);
+    });
+  }
+
+  void getPokemonCardId(int id) async {
+    api.getPokemonCardId(id).then((r) {
+      List<PokemonData> pokemons = [];
+
+      r.data.forEach((pokemon)  {
+        pokemons.add(PokemonData(
+          id: r.data["id"],
+          name: r.data["name"],
+          pokedexId: r.data["pokedexId"],
+          typeId1: r.data["typeId1"],
+          typeIdWeakness: r.data["typeIdWeakness"],
+          attackId: r.data["attackId"],
+          lifePoints: r.data["lifePoints"],
+          size: r.data["size"].toDouble(),
+          weight: r.data["weight"].toDouble(),
+          imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
+        ));
+      });
+      state = state.copyWith(allPokemons: pokemons);
     });
   }
 
@@ -106,6 +92,15 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
       }
     });
   }
+
+  void getRandomPokemonCards(int count) {
+    final random = Random();
+    List<int> randomIds = List.generate(count, (_) => random.nextInt(state.allPokemons.length) + 1); // IDs entre 1 et 151
+
+    for (var id in randomIds) {
+      getPokemonCardId(id);
+    }
+  }
 }
 
 // Cette classe représente l'état du cache des équipes
@@ -113,23 +108,25 @@ class PokemonStoreState {
   // Variables
   final String token;
   final List<PokemonData> pokemons;
+  final List<PokemonData> allPokemons;
 
   // Constructeur
   PokemonStoreState({
     this.token = "",
-    this.pokemons = const []
+    this.pokemons = const [],
+    this.allPokemons = const []
   });
 
   factory PokemonStoreState.init() {
-    var result = PokemonStoreState();
-    return result;
+    return PokemonStoreState();
   }
 
   // Permet de modifier le state
-  PokemonStoreState copyWith({String? token, List<PokemonData>? pokemons}) {
+  PokemonStoreState copyWith({String? token, List<PokemonData>? pokemons, List<PokemonData>? allPokemons}) {
     return PokemonStoreState(
       token: token ?? this.token,
-      pokemons: pokemons ?? this.pokemons
+      pokemons: pokemons ?? this.pokemons,
+      allPokemons: allPokemons ?? this.pokemons
     );
   }
 }
