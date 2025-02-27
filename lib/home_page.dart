@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_r411/pokemon_data.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
-import 'app_store.dart';
+import 'pokemon_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
 import 'widgets/card_pack.dart';
 import 'package:flutter_project_r411/widgets/deck_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyHomePage extends ConsumerStatefulWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends ConsumerState<MyHomePage> {
-  @override
-  Widget build(final BuildContext context) {
-    final AppStore store = ref.read(appStoreProvider.notifier);
-
-    Future? f;
+  Widget build(final BuildContext context, final WidgetRef ref) {
+    final PokemonStore store = ref.read(pokemonStoreProvider.notifier);
+    final PokemonStoreState state = ref.watch(pokemonStoreProvider);
 
     return Stack(
       children: [
@@ -29,33 +23,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FutureBuilder(future: f, builder: (context, snap){
-
-
-              if(snap.hasError){
-                return PokemonCard(cardSize: 500, data: PokemonData());
-              }
-
-              if(!snap.hasData){
-                return CircularProgressIndicator();
-              }
-
-
-              var data = PokemonData(
-                name: snap.data['name'],
-                pokedexId: snap.data['pokedexId'],
-                typeId1: snap.data['typeId1'],
-                typeIdWeakness: snap.data['typeIdWeakness'],
-                attackId: snap.data['attackId'],
-                lifePoints: snap.data['lifePoints'],
-                size: snap.data['size'],
-                weight: snap.data['weight'],
-                url: snap.data['url']
-              );
-
-              return PokemonCard(cardSize: 500, data: data);
-            }),
+            PokemonCard(cardSize: 500, data: (state.pokemons.isNotEmpty) ? state.pokemons.last : PokemonData()),
             SizedBox(height: 30),
+
             Row(
               children: [
                 Button(
@@ -70,23 +40,21 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                       MaterialPageRoute(builder: (context) => DeckPage()),
                     );
                   },
-                )
-                /*Button(
+                ),
+                Button(
                     colorBackground: Colors.blueGrey,
                     colorText: Colors.white,
-                    text: "Deck",
+                    text: "get1",
                     height: 70,
                     width: 128,
-                    onPressed: () {setState(() {
-                      f = store.getPokemonCardId(2);
-                    });}),*/
-                /*Button(
+                    onPressed: () {store.getPokemonCardId(1);}),
+                Button(
                     colorBackground: Colors.blueGrey,
                     colorText: Colors.white,
-                    text: "get3",
+                    text: "get2",
                     height: 70,
                     width: 128,
-                    onPressed: () {card = store.createPokemonCard(3);}),*/
+                    onPressed: () {store.getPokemonCardId(2);}),
               ],
             ),
           ],

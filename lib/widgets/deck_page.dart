@@ -7,9 +7,9 @@ class DeckPage extends StatelessWidget {
 
   // Simule une liste de Pokémon
   final List<PokemonData> deck = [
-    PokemonData(name: "Pikachu", pokedexId: 25, typeId1: 3, typeIdWeakness: 2, attackId: 40, lifePoints: 60, size: 0.4, weight: 6, url: "https://example.com/pikachu.png"),
-    PokemonData(name: "Mewtwo", pokedexId: 1, typeId1: 2, typeIdWeakness: 3, attackId: 50, lifePoints: 80, size: 0.7, weight: 7, url: "https://example.com/bulbizarre.png"),
-    PokemonData(name: "Charizard", pokedexId: 4, typeId1: 1, typeIdWeakness: 2, attackId: 55, lifePoints: 75, size: 0.6, weight: 8, url: "https://example.com/salameche.png"),
+    PokemonData(name: "Pikachu", pokedexId: 25, typeId1: 3, typeIdWeakness: 2, attackId: 40, lifePoints: 60, size: 0.4, weight: 6, imageUrl: "https://example.com/pikachu.png"),
+    PokemonData(name: "Mewtwo", pokedexId: 1, typeId1: 2, typeIdWeakness: 3, attackId: 50, lifePoints: 80, size: 0.7, weight: 7, imageUrl: "https://example.com/bulbizarre.png"),
+    PokemonData(name: "Charizard", pokedexId: 4, typeId1: 1, typeIdWeakness: 2, attackId: 55, lifePoints: 75, size: 0.6, weight: 8, imageUrl: "https://example.com/salameche.png"),
   ];
 
   @override

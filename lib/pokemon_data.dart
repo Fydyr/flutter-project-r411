@@ -1,6 +1,7 @@
 import 'app_const.dart';
 
 class PokemonData{
+  int id;
   String name;
   int pokedexId;
   int typeId1;
@@ -9,9 +10,10 @@ class PokemonData{
   int lifePoints;
   double size;
   double weight;
-  String url;
+  String imageUrl;
 
   PokemonData({
+    this.id = AppConst.PokemonCardId,
     this.name = AppConst.PokemonCardName,
     this.pokedexId = AppConst.PokemonPokedexId,
     this.typeId1 = AppConst.PokemonTypeId1,
@@ -20,6 +22,6 @@ class PokemonData{
     this.lifePoints = AppConst.PokemonLifePoints,
     this.size = AppConst.PokemonSize,
     this.weight = AppConst.PokemonWeight,
-    this.url = AppConst.PokemonUrl
+    this.imageUrl = AppConst.PokemonUrl
   });
 }

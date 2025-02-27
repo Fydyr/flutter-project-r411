@@ -20,7 +20,9 @@ class ApiHelper {
   Future<Response> getPokemonCardId(int id) async {
     final url = 'http://88.173.86.254:37391/pokemon-cards/$id';
 
-    return dio.get(url);
+    final res = dio.get(url);
+    res.then((r) {print(r.data);});
+    return res;
   }
 
   Future<Response> getPokemonTypes() async {

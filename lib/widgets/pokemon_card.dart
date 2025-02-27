@@ -47,7 +47,7 @@ class PokemonCard extends StatelessWidget {
 
             // --- Image du Pokémon ---
             Expanded(
-              child: Image.network(data.url, fit: BoxFit.contain),
+              child: (data.imageUrl != "") ? Image.network(data.imageUrl, fit: BoxFit.contain) : Image.asset("images/images_cards/Ratata.png", fit: BoxFit.contain),
             ),
             SizedBox(height: cardSize * 0.02),
 
