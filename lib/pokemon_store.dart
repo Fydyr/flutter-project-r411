@@ -24,26 +24,6 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
         pokemons.add(pokemon);
       });
 
-      pokemons.add(PokemonData(
-          id: r.data["id"],
-          name: r.data["name"],
-          pokedexId: r.data["pokedexId"],
-          typeId1: r.data["typeId1"],
-          typeIdWeakness: r.data["typeIdWeakness"],
-          attackId: r.data["attackId"],
-          lifePoints: r.data["lifePoints"],
-          size: r.data["size"].toDouble(),
-          weight: r.data["weight"].toDouble(),
-          imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
-      ));
-      state = state.copyWith(pokemons: pokemons);
-    });
-  }
-
-  void getPokemonCardId(int id) async {
-    api.getPokemonCardId(id).then((r) {
-      List<PokemonData> pokemons = [];
-
       r.data.forEach((pokemon)  {
         pokemons.add(PokemonData(
           id: r.data["id"],
@@ -58,6 +38,28 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
           imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
         ));
       });
+
+      state = state.copyWith(pokemons: pokemons);
+    });
+  }
+
+  void getPokemonCardId(int id) async {
+    api.getPokemonCardId(id).then((r) {
+      List<PokemonData> pokemons = [];
+
+      pokemons.add(PokemonData(
+        id: r.data["id"],
+        name: r.data["name"],
+        pokedexId: r.data["pokedexId"],
+        typeId1: r.data["typeId1"],
+        typeIdWeakness: r.data["typeIdWeakness"],
+        attackId: r.data["attackId"],
+        lifePoints: r.data["lifePoints"],
+        size: r.data["size"].toDouble(),
+        weight: r.data["weight"].toDouble(),
+        imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
+      ));
+
       state = state.copyWith(allPokemons: pokemons);
     });
   }
