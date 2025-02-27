@@ -87,7 +87,7 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
 
   void getRandomPokemonCards(int count) {
     final random = Random();
-    List<int> randomIds = List.generate(count, (_) => random.nextInt(state.allPokemons.length) + 1); // IDs entre 1 et 151
+    List<int> randomIds = List.generate(count, (_) => random.nextInt(state.allPokemons.length) + 1); // IDs entre 1 et 36
 
     for (var id in randomIds) {
       getPokemonCardId(id);
