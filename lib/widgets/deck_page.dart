@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_r411/pokemon_data.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DeckPage extends StatelessWidget {
+import '../pokemon_store.dart';
+
+class DeckPage extends ConsumerWidget {
   DeckPage({super.key});
 
   // Simule une liste de Pokémon
-  final List<PokemonData> deck = [
-    PokemonData(name: "Pikachu", pokedexId: 25, typeId1: 3, typeIdWeakness: 2, attackId: 40, lifePoints: 60, size: 0.4, weight: 6, imageUrl: "https://example.com/pikachu.png"),
-    PokemonData(name: "Mewtwo", pokedexId: 1, typeId1: 2, typeIdWeakness: 3, attackId: 50, lifePoints: 80, size: 0.7, weight: 7, imageUrl: "https://example.com/bulbizarre.png"),
-    PokemonData(name: "Charizard", pokedexId: 4, typeId1: 1, typeIdWeakness: 2, attackId: 55, lifePoints: 75, size: 0.6, weight: 8, imageUrl: "https://example.com/salameche.png"),
-  ];
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, final WidgetRef ref) {
+    final PokemonStoreState state = ref.watch(pokemonStoreProvider);
+    final List<PokemonData> deck = state.pokemons;
     return Scaffold(
       appBar: AppBar(title: Text("Deck Pokémon")),
       body: GridView.builder(
