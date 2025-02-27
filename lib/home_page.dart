@@ -5,7 +5,7 @@ import 'pokemon_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
 import 'widgets/card_pack.dart';
-import 'package:flutter_project_r411/widgets/deck_page.dart';
+import 'package:flutter_project_r411/widgets/collection_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyHomePage extends ConsumerWidget {
@@ -37,7 +37,7 @@ class MyHomePage extends ConsumerWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DeckPage()),
+                      MaterialPageRoute(builder: (context) => CollectionPage()),
                     );
                   },
                 ),
