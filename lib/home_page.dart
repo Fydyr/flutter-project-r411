@@ -16,7 +16,6 @@ class MyHomePage extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) {
     final PokemonStore store = ref.read(pokemonStoreProvider.notifier);
     final PokemonStoreState state = ref.watch(pokemonStoreProvider);
-    store.getPokemonCards();
 
     return Stack(
       children: [
@@ -54,7 +53,7 @@ class MyHomePage extends ConsumerWidget {
                   colorText: Colors.white,
                   text: "Tirer 5 cartes",
                   height: 70,
-                  width: 160,
+                  width: 130,
                   onPressed: () {
                     store.getRandomPokemonCards(5);}),
               ],

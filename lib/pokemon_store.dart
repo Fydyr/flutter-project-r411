@@ -1,7 +1,5 @@
 import 'dart:math';
-import 'package:dio/dio.dart';
 import 'package:flutter_project_r411/pokemon_data.dart';
-import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
@@ -13,7 +11,9 @@ StateNotifierProvider<PokemonStore, PokemonStoreState>((ref) {
 
 // Cette classe permet de gérer le cache des équipes
 class PokemonStore extends StateNotifier<PokemonStoreState> {
-  PokemonStore({required this.api}) : super(PokemonStoreState.init());
+  PokemonStore({required this.api}) : super(PokemonStoreState.init()) {
+    getPokemonCards();
+  }
 
   final ApiHelper api;
 
@@ -22,48 +22,36 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
     api.getPokemonCards().then((r) {
       List<PokemonData> pokemons = [];
 
-      state.pokemons.forEach((pokemon) {
-        pokemons.add(pokemon);
-      });
-
       r.data.forEach((pokemon)  {
+        print(pokemon);
         pokemons.add(PokemonData(
-          id: r.data["id"],
-          name: r.data["name"],
-          pokedexId: r.data["pokedexId"],
-          typeId1: r.data["typeId1"],
-          typeIdWeakness: r.data["typeIdWeakness"],
-          attackId: r.data["attackId"],
-          lifePoints: r.data["lifePoints"],
-          size: r.data["size"].toDouble(),
-          weight: r.data["weight"].toDouble(),
-          imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
+          id: pokemon["id"],
+          name: pokemon["name"],
+          pokedexId: pokemon["pokedexId"],
+          typeId1: pokemon["typeId1"],
+          typeIdWeakness: pokemon["typeIdWeakness"],
+          attackId: pokemon["attackId"],
+          lifePoints: pokemon["lifePoints"],
+          size: pokemon["size"].toDouble(),
+          weight: pokemon["weight"].toDouble(),
+          imageUrl: (pokemon["imageUrl"] != null)? pokemon["imageUrl"] : ""
         ));
       });
 
-      state = state.copyWith(pokemons: pokemons);
+      state = state.copyWith(allPokemons: pokemons);
     });
   }
 
   void getPokemonCardId(int id) async {
-    api.getPokemonCardId(id).then((r) {
-      List<PokemonData> pokemons = [];
+    List<PokemonData> pokemons = [];
 
-      pokemons.add(PokemonData(
-        id: r.data["id"],
-        name: r.data["name"],
-        pokedexId: r.data["pokedexId"],
-        typeId1: r.data["typeId1"],
-        typeIdWeakness: r.data["typeIdWeakness"],
-        attackId: r.data["attackId"],
-        lifePoints: r.data["lifePoints"],
-        size: r.data["size"].toDouble(),
-        weight: r.data["weight"].toDouble(),
-        imageUrl: (r.data["imageUrl"] != null)? r.data["imageUrl"] : ""
-      ));
-
-      state = state.copyWith(allPokemons: pokemons);
+    state.pokemons.forEach((pokemon) {
+      pokemons.add(pokemon);
     });
+
+    pokemons.add(state.allPokemons[id-1]);
+
+    state = state.copyWith(pokemons: pokemons);
   }
 
   void getPokemonTypes(){
@@ -130,7 +118,7 @@ class PokemonStoreState {
     return PokemonStoreState(
       token: token ?? this.token,
       pokemons: pokemons ?? this.pokemons,
-      allPokemons: allPokemons ?? this.pokemons
+      allPokemons: allPokemons ?? this.allPokemons
     );
   }
 }
