@@ -5,6 +5,7 @@ import 'app_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
 import 'widgets/card_pack.dart';
+import 'package:flutter_project_r411/widgets/deck_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
@@ -58,21 +59,27 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
             Row(
               children: [
                 Button(
+                  colorBackground: Colors.blueGrey,
+                  colorText: Colors.white,
+                  text: "Deck",
+                  height: 70,
+                  width: 128,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DeckPage()),
+                    );
+                  },
+                )
+                /*Button(
                     colorBackground: Colors.blueGrey,
                     colorText: Colors.white,
-                    text: "getAll",
-                    height: 70,
-                    width: 128,
-                    onPressed: store.getPokemonCards),
-                Button(
-                    colorBackground: Colors.blueGrey,
-                    colorText: Colors.white,
-                    text: "get1",
+                    text: "Deck",
                     height: 70,
                     width: 128,
                     onPressed: () {setState(() {
                       f = store.getPokemonCardId(2);
-                    });}),
+                    });}),*/
                 /*Button(
                     colorBackground: Colors.blueGrey,
                     colorText: Colors.white,
