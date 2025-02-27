@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'package:dio/dio.dart';
 import 'package:flutter_project_r411/pokemon_data.dart';
+import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
