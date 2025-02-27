@@ -23,7 +23,7 @@ class MyHomePage extends ConsumerWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PokemonCard(cardSize: 500, data: (state.pokemons.isNotEmpty) ? state.pokemons.last : PokemonData()),
+            if (state.pokemons.isNotEmpty) PokemonCard(cardSize: 500, data: state.pokemons.last),
             SizedBox(height: 30),
 
             Row(
@@ -47,7 +47,7 @@ class MyHomePage extends ConsumerWidget {
                     text: "get1",
                     height: 70,
                     width: 128,
-                    onPressed: () {store.getPokemonCardId(1);}),
+                    onPressed: () {store.getPokemonCardId(37);}),
                 Button(
                   colorBackground: Colors.blueGrey,
                   colorText: Colors.white,

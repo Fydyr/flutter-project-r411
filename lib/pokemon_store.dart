@@ -93,6 +93,10 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
       getPokemonCardId(id);
     }
   }
+
+  String getUrlImagePokemon(int id) {
+    return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png";
+  }
 }
 
 // Cette classe représente l'état du cache des équipes
