@@ -11,7 +11,7 @@ class UserDatabase{
   }
 
   // create new pokemon
-  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, int size, int weight, int numberPokemon) async {
+  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, int size, int weight, int idAttack, int numberPokemon) async {
     final newPokemon = PokemonData()
       ..idPoke = idPoke
       ..name = name
@@ -21,6 +21,7 @@ class UserDatabase{
       ..imageURL = imageURL
       ..size = size
       ..weight = weight
+      ..idAttack = idAttack
       ..numberPokemon = 1;
 
 

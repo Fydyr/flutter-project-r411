@@ -17,48 +17,53 @@ const PokemonDataSchema = CollectionSchema(
   name: r'PokemonData',
   id: 1796270397199454884,
   properties: {
-    r'idPoke': PropertySchema(
+    r'idAttack': PropertySchema(
       id: 0,
+      name: r'idAttack',
+      type: IsarType.long,
+    ),
+    r'idPoke': PropertySchema(
+      id: 1,
       name: r'idPoke',
       type: IsarType.long,
     ),
     r'imageURL': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'imageURL',
       type: IsarType.string,
     ),
     r'lifePoints': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'lifePoints',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'name',
       type: IsarType.string,
     ),
     r'numberPokemon': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'numberPokemon',
       type: IsarType.long,
     ),
     r'pokedexId': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'pokedexId',
       type: IsarType.long,
     ),
     r'size': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'size',
       type: IsarType.long,
     ),
     r'type': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'type',
       type: IsarType.long,
     ),
     r'weight': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'weight',
       type: IsarType.long,
     )
@@ -104,15 +109,16 @@ void _pokemonDataSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.idPoke);
-  writer.writeString(offsets[1], object.imageURL);
-  writer.writeLong(offsets[2], object.lifePoints);
-  writer.writeString(offsets[3], object.name);
-  writer.writeLong(offsets[4], object.numberPokemon);
-  writer.writeLong(offsets[5], object.pokedexId);
-  writer.writeLong(offsets[6], object.size);
-  writer.writeLong(offsets[7], object.type);
-  writer.writeLong(offsets[8], object.weight);
+  writer.writeLong(offsets[0], object.idAttack);
+  writer.writeLong(offsets[1], object.idPoke);
+  writer.writeString(offsets[2], object.imageURL);
+  writer.writeLong(offsets[3], object.lifePoints);
+  writer.writeString(offsets[4], object.name);
+  writer.writeLong(offsets[5], object.numberPokemon);
+  writer.writeLong(offsets[6], object.pokedexId);
+  writer.writeLong(offsets[7], object.size);
+  writer.writeLong(offsets[8], object.type);
+  writer.writeLong(offsets[9], object.weight);
 }
 
 PokemonData _pokemonDataDeserialize(
@@ -123,15 +129,16 @@ PokemonData _pokemonDataDeserialize(
 ) {
   final object = PokemonData();
   object.id = id;
-  object.idPoke = reader.readLongOrNull(offsets[0]);
-  object.imageURL = reader.readStringOrNull(offsets[1]);
-  object.lifePoints = reader.readLongOrNull(offsets[2]);
-  object.name = reader.readStringOrNull(offsets[3]);
-  object.numberPokemon = reader.readLongOrNull(offsets[4]);
-  object.pokedexId = reader.readLongOrNull(offsets[5]);
-  object.size = reader.readLongOrNull(offsets[6]);
-  object.type = reader.readLongOrNull(offsets[7]);
-  object.weight = reader.readLongOrNull(offsets[8]);
+  object.idAttack = reader.readLongOrNull(offsets[0]);
+  object.idPoke = reader.readLongOrNull(offsets[1]);
+  object.imageURL = reader.readStringOrNull(offsets[2]);
+  object.lifePoints = reader.readLongOrNull(offsets[3]);
+  object.name = reader.readStringOrNull(offsets[4]);
+  object.numberPokemon = reader.readLongOrNull(offsets[5]);
+  object.pokedexId = reader.readLongOrNull(offsets[6]);
+  object.size = reader.readLongOrNull(offsets[7]);
+  object.type = reader.readLongOrNull(offsets[8]);
+  object.weight = reader.readLongOrNull(offsets[9]);
   return object;
 }
 
@@ -145,13 +152,13 @@ P _pokemonDataDeserializeProp<P>(
     case 0:
       return (reader.readLongOrNull(offset)) as P;
     case 1:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 2:
-      return (reader.readLongOrNull(offset)) as P;
-    case 3:
       return (reader.readStringOrNull(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readLongOrNull(offset)) as P;
+    case 4:
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
       return (reader.readLongOrNull(offset)) as P;
     case 6:
@@ -159,6 +166,8 @@ P _pokemonDataDeserializeProp<P>(
     case 7:
       return (reader.readLongOrNull(offset)) as P;
     case 8:
+      return (reader.readLongOrNull(offset)) as P;
+    case 9:
       return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -303,6 +312,79 @@ extension PokemonDataQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      idAttackIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'idAttack',
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      idAttackIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'idAttack',
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idAttackEqualTo(
+      int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'idAttack',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      idAttackGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'idAttack',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      idAttackLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'idAttack',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idAttackBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'idAttack',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1125,6 +1207,18 @@ extension PokemonDataQueryLinks
 
 extension PokemonDataQuerySortBy
     on QueryBuilder<PokemonData, PokemonData, QSortBy> {
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByIdAttack() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'idAttack', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByIdAttackDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'idAttack', Sort.desc);
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByIdPoke() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idPoke', Sort.asc);
@@ -1249,6 +1343,18 @@ extension PokemonDataQuerySortThenBy
     });
   }
 
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdAttack() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'idAttack', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdAttackDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'idAttack', Sort.desc);
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdPoke() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idPoke', Sort.asc);
@@ -1361,6 +1467,12 @@ extension PokemonDataQuerySortThenBy
 
 extension PokemonDataQueryWhereDistinct
     on QueryBuilder<PokemonData, PokemonData, QDistinct> {
+  QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByIdAttack() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'idAttack');
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByIdPoke() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'idPoke');
@@ -1423,6 +1535,12 @@ extension PokemonDataQueryProperty
   QueryBuilder<PokemonData, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<PokemonData, int?, QQueryOperations> idAttackProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'idAttack');
     });
   }
 
