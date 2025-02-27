@@ -13,4 +13,5 @@ class PokemonData{
   String? imageURL;
   int? size;
   int? weight;
+  int? numberPokemon;
 }

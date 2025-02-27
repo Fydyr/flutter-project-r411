@@ -37,23 +37,28 @@ const PokemonDataSchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'pokedexId': PropertySchema(
+    r'numberPokemon': PropertySchema(
       id: 4,
+      name: r'numberPokemon',
+      type: IsarType.long,
+    ),
+    r'pokedexId': PropertySchema(
+      id: 5,
       name: r'pokedexId',
       type: IsarType.long,
     ),
     r'size': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'size',
       type: IsarType.long,
     ),
     r'type': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'type',
       type: IsarType.long,
     ),
     r'weight': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'weight',
       type: IsarType.long,
     )
@@ -103,10 +108,11 @@ void _pokemonDataSerialize(
   writer.writeString(offsets[1], object.imageURL);
   writer.writeLong(offsets[2], object.lifePoints);
   writer.writeString(offsets[3], object.name);
-  writer.writeLong(offsets[4], object.pokedexId);
-  writer.writeLong(offsets[5], object.size);
-  writer.writeLong(offsets[6], object.type);
-  writer.writeLong(offsets[7], object.weight);
+  writer.writeLong(offsets[4], object.numberPokemon);
+  writer.writeLong(offsets[5], object.pokedexId);
+  writer.writeLong(offsets[6], object.size);
+  writer.writeLong(offsets[7], object.type);
+  writer.writeLong(offsets[8], object.weight);
 }
 
 PokemonData _pokemonDataDeserialize(
@@ -121,10 +127,11 @@ PokemonData _pokemonDataDeserialize(
   object.imageURL = reader.readStringOrNull(offsets[1]);
   object.lifePoints = reader.readLongOrNull(offsets[2]);
   object.name = reader.readStringOrNull(offsets[3]);
-  object.pokedexId = reader.readLongOrNull(offsets[4]);
-  object.size = reader.readLongOrNull(offsets[5]);
-  object.type = reader.readLongOrNull(offsets[6]);
-  object.weight = reader.readLongOrNull(offsets[7]);
+  object.numberPokemon = reader.readLongOrNull(offsets[4]);
+  object.pokedexId = reader.readLongOrNull(offsets[5]);
+  object.size = reader.readLongOrNull(offsets[6]);
+  object.type = reader.readLongOrNull(offsets[7]);
+  object.weight = reader.readLongOrNull(offsets[8]);
   return object;
 }
 
@@ -150,6 +157,8 @@ P _pokemonDataDeserializeProp<P>(
     case 6:
       return (reader.readLongOrNull(offset)) as P;
     case 7:
+      return (reader.readLongOrNull(offset)) as P;
+    case 8:
       return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -749,6 +758,80 @@ extension PokemonDataQueryFilter
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'numberPokemon',
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'numberPokemon',
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'numberPokemon',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'numberPokemon',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'numberPokemon',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+      numberPokemonBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'numberPokemon',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
       pokedexIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1090,6 +1173,19 @@ extension PokemonDataQuerySortBy
     });
   }
 
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByNumberPokemon() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'numberPokemon', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy>
+      sortByNumberPokemonDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'numberPokemon', Sort.desc);
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByPokedexId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pokedexId', Sort.asc);
@@ -1201,6 +1297,19 @@ extension PokemonDataQuerySortThenBy
     });
   }
 
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByNumberPokemon() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'numberPokemon', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PokemonData, PokemonData, QAfterSortBy>
+      thenByNumberPokemonDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'numberPokemon', Sort.desc);
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByPokedexId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pokedexId', Sort.asc);
@@ -1278,6 +1387,12 @@ extension PokemonDataQueryWhereDistinct
     });
   }
 
+  QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByNumberPokemon() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'numberPokemon');
+    });
+  }
+
   QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByPokedexId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'pokedexId');
@@ -1332,6 +1447,12 @@ extension PokemonDataQueryProperty
   QueryBuilder<PokemonData, String?, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<PokemonData, int?, QQueryOperations> numberPokemonProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'numberPokemon');
     });
   }
 

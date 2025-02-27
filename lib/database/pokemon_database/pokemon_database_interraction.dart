@@ -10,8 +10,8 @@ class UserDatabase{
     isar = await Isar.open([PokemonDataSchema], directory: dir.path);
   }
 
-  // create new user with an email and password
-  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, int size, int weight) async {
+  // create new pokemon
+  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, int size, int weight, int numberPokemon) async {
     final newPokemon = PokemonData()
       ..idPoke = idPoke
       ..name = name
@@ -20,7 +20,9 @@ class UserDatabase{
       ..type = type
       ..imageURL = imageURL
       ..size = size
-      ..weight = weight;
+      ..weight = weight
+      ..numberPokemon = 1;
+
 
     await isar.writeTxn(() async {
       await isar.pokemonDatas.put(newPokemon);
@@ -35,9 +37,9 @@ class UserDatabase{
   }
 
   // update pokemon data
-  static Future<void> updatePokemon(PokemonData user) async {
+  static Future<void> updatePokemon(PokemonData pokemon) async {
     await isar.writeTxn(() async {
-      await isar.pokemonDatas.put(user);
+      await isar.pokemonDatas.put(pokemon);
     });
   }
 

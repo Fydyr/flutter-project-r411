@@ -3,6 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io'; // Pour Directory
 import 'user_database/user_data.dart'; // Import du modèle User
 import 'pokemon_database/pokemon_data.dart'; // Import du modèle Pokémon
+import 'type_image/type_image_data.dart'; // import du modèle Type image
 
 class DatabaseService {
   static late Isar isar;
@@ -12,7 +13,7 @@ class DatabaseService {
     final Directory dir = await getApplicationDocumentsDirectory();
 
     isar = await Isar.open(
-      [UserDataSchema, PokemonDataSchema], // Ajouter ici toutes les tables
+      [UserDataSchema, PokemonDataSchema, TypeImageDataSchema], // Ajouter ici toutes les tables
       directory: dir.path,
     );
   }
