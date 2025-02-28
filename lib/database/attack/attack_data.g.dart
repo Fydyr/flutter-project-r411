@@ -9,13 +9,13 @@ part of 'attack_data.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetPokemonDataCollection on Isar {
-  IsarCollection<PokemonData> get pokemonDatas => this.collection();
+extension GetAttackDataCollection on Isar {
+  IsarCollection<AttackData> get attackDatas => this.collection();
 }
 
-const PokemonDataSchema = CollectionSchema(
-  name: r'PokemonData',
-  id: 1796270397199454884,
+const AttackDataSchema = CollectionSchema(
+  name: r'AttackData',
+  id: 4233658804513794042,
   properties: {
     r'damage': PropertySchema(
       id: 0,
@@ -33,22 +33,22 @@ const PokemonDataSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _pokemonDataEstimateSize,
-  serialize: _pokemonDataSerialize,
-  deserialize: _pokemonDataDeserialize,
-  deserializeProp: _pokemonDataDeserializeProp,
+  estimateSize: _attackDataEstimateSize,
+  serialize: _attackDataSerialize,
+  deserialize: _attackDataDeserialize,
+  deserializeProp: _attackDataDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _pokemonDataGetId,
-  getLinks: _pokemonDataGetLinks,
-  attach: _pokemonDataAttach,
+  getId: _attackDataGetId,
+  getLinks: _attackDataGetLinks,
+  attach: _attackDataAttach,
   version: '3.1.0+1',
 );
 
-int _pokemonDataEstimateSize(
-  PokemonData object,
+int _attackDataEstimateSize(
+  AttackData object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -62,8 +62,8 @@ int _pokemonDataEstimateSize(
   return bytesCount;
 }
 
-void _pokemonDataSerialize(
-  PokemonData object,
+void _attackDataSerialize(
+  AttackData object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -73,13 +73,13 @@ void _pokemonDataSerialize(
   writer.writeString(offsets[2], object.name);
 }
 
-PokemonData _pokemonDataDeserialize(
+AttackData _attackDataDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = PokemonData();
+  final object = AttackData();
   object.damage = reader.readLongOrNull(offsets[0]);
   object.id = id;
   object.idType = reader.readLongOrNull(offsets[1]);
@@ -87,7 +87,7 @@ PokemonData _pokemonDataDeserialize(
   return object;
 }
 
-P _pokemonDataDeserializeProp<P>(
+P _attackDataDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -105,31 +105,30 @@ P _pokemonDataDeserializeProp<P>(
   }
 }
 
-Id _pokemonDataGetId(PokemonData object) {
+Id _attackDataGetId(AttackData object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _pokemonDataGetLinks(PokemonData object) {
+List<IsarLinkBase<dynamic>> _attackDataGetLinks(AttackData object) {
   return [];
 }
 
-void _pokemonDataAttach(
-    IsarCollection<dynamic> col, Id id, PokemonData object) {
+void _attackDataAttach(IsarCollection<dynamic> col, Id id, AttackData object) {
   object.id = id;
 }
 
-extension PokemonDataQueryWhereSort
-    on QueryBuilder<PokemonData, PokemonData, QWhere> {
-  QueryBuilder<PokemonData, PokemonData, QAfterWhere> anyId() {
+extension AttackDataQueryWhereSort
+    on QueryBuilder<AttackData, AttackData, QWhere> {
+  QueryBuilder<AttackData, AttackData, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension PokemonDataQueryWhere
-    on QueryBuilder<PokemonData, PokemonData, QWhereClause> {
-  QueryBuilder<PokemonData, PokemonData, QAfterWhereClause> idEqualTo(Id id) {
+extension AttackDataQueryWhere
+    on QueryBuilder<AttackData, AttackData, QWhereClause> {
+  QueryBuilder<AttackData, AttackData, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -138,8 +137,7 @@ extension PokemonDataQueryWhere
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterWhereClause> idNotEqualTo(
-      Id id) {
+  QueryBuilder<AttackData, AttackData, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -161,7 +159,7 @@ extension PokemonDataQueryWhere
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<AttackData, AttackData, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -170,7 +168,7 @@ extension PokemonDataQueryWhere
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<AttackData, AttackData, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -179,7 +177,7 @@ extension PokemonDataQueryWhere
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterWhereClause> idBetween(
+  QueryBuilder<AttackData, AttackData, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -196,9 +194,9 @@ extension PokemonDataQueryWhere
   }
 }
 
-extension PokemonDataQueryFilter
-    on QueryBuilder<PokemonData, PokemonData, QFilterCondition> {
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> damageIsNull() {
+extension AttackDataQueryFilter
+    on QueryBuilder<AttackData, AttackData, QFilterCondition> {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> damageIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'damage',
@@ -206,7 +204,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition>
       damageIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -215,7 +213,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> damageEqualTo(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> damageEqualTo(
       int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -225,8 +223,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
-      damageGreaterThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> damageGreaterThan(
     int? value, {
     bool include = false,
   }) {
@@ -239,7 +236,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> damageLessThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> damageLessThan(
     int? value, {
     bool include = false,
   }) {
@@ -252,7 +249,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> damageBetween(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> damageBetween(
     int? lower,
     int? upper, {
     bool includeLower = true,
@@ -269,7 +266,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idEqualTo(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idEqualTo(
       Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -279,7 +276,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -292,7 +289,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idLessThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -305,7 +302,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idBetween(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -322,7 +319,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idTypeIsNull() {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idTypeIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'idType',
@@ -330,7 +327,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition>
       idTypeIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -339,7 +336,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idTypeEqualTo(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idTypeEqualTo(
       int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -349,8 +346,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
-      idTypeGreaterThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idTypeGreaterThan(
     int? value, {
     bool include = false,
   }) {
@@ -363,7 +359,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idTypeLessThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idTypeLessThan(
     int? value, {
     bool include = false,
   }) {
@@ -376,7 +372,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> idTypeBetween(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> idTypeBetween(
     int? lower,
     int? upper, {
     bool includeLower = true,
@@ -393,7 +389,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameIsNull() {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'name',
@@ -401,8 +397,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
-      nameIsNotNull() {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'name',
@@ -410,7 +405,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameEqualTo(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
@@ -423,7 +418,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameGreaterThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -438,7 +433,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameLessThan(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -453,7 +448,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameBetween(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -472,7 +467,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -485,7 +480,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -498,7 +493,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameContains(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -510,7 +505,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameMatches(
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -522,7 +517,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -531,8 +526,7 @@ extension PokemonDataQueryFilter
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
-      nameIsNotEmpty() {
+  QueryBuilder<AttackData, AttackData, QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
@@ -542,117 +536,117 @@ extension PokemonDataQueryFilter
   }
 }
 
-extension PokemonDataQueryObject
-    on QueryBuilder<PokemonData, PokemonData, QFilterCondition> {}
+extension AttackDataQueryObject
+    on QueryBuilder<AttackData, AttackData, QFilterCondition> {}
 
-extension PokemonDataQueryLinks
-    on QueryBuilder<PokemonData, PokemonData, QFilterCondition> {}
+extension AttackDataQueryLinks
+    on QueryBuilder<AttackData, AttackData, QFilterCondition> {}
 
-extension PokemonDataQuerySortBy
-    on QueryBuilder<PokemonData, PokemonData, QSortBy> {
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByDamage() {
+extension AttackDataQuerySortBy
+    on QueryBuilder<AttackData, AttackData, QSortBy> {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByDamage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'damage', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByDamageDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByDamageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'damage', Sort.desc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByIdType() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByIdType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idType', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByIdTypeDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByIdTypeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idType', Sort.desc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByName() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 }
 
-extension PokemonDataQuerySortThenBy
-    on QueryBuilder<PokemonData, PokemonData, QSortThenBy> {
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByDamage() {
+extension AttackDataQuerySortThenBy
+    on QueryBuilder<AttackData, AttackData, QSortThenBy> {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByDamage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'damage', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByDamageDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByDamageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'damage', Sort.desc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenById() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdType() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByIdType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idType', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByIdTypeDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByIdTypeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'idType', Sort.desc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByName() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<AttackData, AttackData, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 }
 
-extension PokemonDataQueryWhereDistinct
-    on QueryBuilder<PokemonData, PokemonData, QDistinct> {
-  QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByDamage() {
+extension AttackDataQueryWhereDistinct
+    on QueryBuilder<AttackData, AttackData, QDistinct> {
+  QueryBuilder<AttackData, AttackData, QDistinct> distinctByDamage() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'damage');
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByIdType() {
+  QueryBuilder<AttackData, AttackData, QDistinct> distinctByIdType() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'idType');
     });
   }
 
-  QueryBuilder<PokemonData, PokemonData, QDistinct> distinctByName(
+  QueryBuilder<AttackData, AttackData, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
@@ -660,27 +654,27 @@ extension PokemonDataQueryWhereDistinct
   }
 }
 
-extension PokemonDataQueryProperty
-    on QueryBuilder<PokemonData, PokemonData, QQueryProperty> {
-  QueryBuilder<PokemonData, int, QQueryOperations> idProperty() {
+extension AttackDataQueryProperty
+    on QueryBuilder<AttackData, AttackData, QQueryProperty> {
+  QueryBuilder<AttackData, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<PokemonData, int?, QQueryOperations> damageProperty() {
+  QueryBuilder<AttackData, int?, QQueryOperations> damageProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'damage');
     });
   }
 
-  QueryBuilder<PokemonData, int?, QQueryOperations> idTypeProperty() {
+  QueryBuilder<AttackData, int?, QQueryOperations> idTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'idType');
     });
   }
 
-  QueryBuilder<PokemonData, String?, QQueryOperations> nameProperty() {
+  QueryBuilder<AttackData, String?, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
