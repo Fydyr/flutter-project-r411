@@ -9,8 +9,6 @@ Future<void> main() async {
   runApp(ProviderScope(child: const MyApp()));
 }
 
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

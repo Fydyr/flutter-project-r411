@@ -3,7 +3,7 @@ import 'package:flutter_project_r411/pokemon_data.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../pokemon_store.dart';
+import '../store/pokemon_store.dart';
 
 class CollectionPage extends ConsumerWidget {
   CollectionPage({super.key});

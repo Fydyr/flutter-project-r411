@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_r411/pokemon_data.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
-import 'pokemon_store.dart';
+import 'store/pokemon_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
 import 'widgets/card_pack.dart';
