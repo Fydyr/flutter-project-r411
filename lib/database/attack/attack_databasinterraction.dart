@@ -22,7 +22,7 @@ class UserDatabase{
       await isar.attackDatas.put(newPokemon);
     });
 
-    print("pokemon add to your collection with ID: ${newPokemon.id} and pokemon id : ${newPokemon.idPoke}");
+    print("pokemon add to your collection with ID: ${newPokemon.id}");
   }
 
   /// Fetch all pokemon from collection if exist
