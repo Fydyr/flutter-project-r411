@@ -11,7 +11,7 @@ class UserDatabase{
   }
 
   // create new pokemon
-  static Future<void> addPokemon(String name, int damage, int idType) async {
+  static Future<void> addAttack(String name, int damage, int idType) async {
     final newPokemon = AttackData()
       ..name = name
     ..damage = damage
@@ -26,12 +26,12 @@ class UserDatabase{
   }
 
   /// Fetch all pokemon from collection if exist
-  static Future<List<AttackData>> getAllPokemonCollection() async {
+  static Future<List<AttackData>> getAllAttacks() async {
     return await isar.attackDatas.where().findAll();
   }
 
   // update pokemon data
-  static Future<void> updatePokemon(AttackData pokemon) async {
+  static Future<void> updateAttack(AttackData pokemon) async {
     await isar.writeTxn(() async {
       await isar.attackDatas.put(pokemon);
     });

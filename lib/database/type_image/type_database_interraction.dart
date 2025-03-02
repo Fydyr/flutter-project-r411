@@ -11,7 +11,7 @@ class UserDatabase{
   }
 
   // create new type
-  static Future<void> addPokemon(String name, int typeId, String imageLink) async {
+  static Future<void> addType(String name, int typeId, String imageLink) async {
     final newType = TypeImageData()
       ..name
       ..typeId
@@ -26,12 +26,12 @@ class UserDatabase{
   }
 
   /// Fetch all types from the database
-  static Future<List<TypeImageData>> getAllPokemonCollection() async {
+  static Future<List<TypeImageData>> getAllType() async {
     return await isar.typeImageDatas.where().findAll();
   }
 
   // update type data
-  static Future<void> updatePokemon(TypeImageData typeImage) async {
+  static Future<void> updateType(TypeImageData typeImage) async {
     await isar.writeTxn(() async {
       await isar.typeImageDatas.put(typeImage);
     });
