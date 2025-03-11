@@ -35,7 +35,7 @@ const PokemonDataSchema = CollectionSchema(
     r'lifePoints': PropertySchema(
       id: 3,
       name: r'lifePoints',
-      type: IsarType.double,
+      type: IsarType.long,
     ),
     r'name': PropertySchema(
       id: 4,
@@ -112,7 +112,7 @@ void _pokemonDataSerialize(
   writer.writeLong(offsets[0], object.idAttack);
   writer.writeLong(offsets[1], object.idPoke);
   writer.writeString(offsets[2], object.imageURL);
-  writer.writeDouble(offsets[3], object.lifePoints);
+  writer.writeLong(offsets[3], object.lifePoints);
   writer.writeString(offsets[4], object.name);
   writer.writeLong(offsets[5], object.numberPokemon);
   writer.writeLong(offsets[6], object.pokedexId);
@@ -132,7 +132,7 @@ PokemonData _pokemonDataDeserialize(
   object.idAttack = reader.readLongOrNull(offsets[0]);
   object.idPoke = reader.readLongOrNull(offsets[1]);
   object.imageURL = reader.readStringOrNull(offsets[2]);
-  object.lifePoints = reader.readDoubleOrNull(offsets[3]);
+  object.lifePoints = reader.readLongOrNull(offsets[3]);
   object.name = reader.readStringOrNull(offsets[4]);
   object.numberPokemon = reader.readLongOrNull(offsets[5]);
   object.pokedexId = reader.readLongOrNull(offsets[6]);
@@ -156,7 +156,7 @@ P _pokemonDataDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readDoubleOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 4:
       return (reader.readStringOrNull(offset)) as P;
     case 5:
@@ -636,58 +636,49 @@ extension PokemonDataQueryFilter
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
-      lifePointsEqualTo(
-    double? value, {
-    double epsilon = Query.epsilon,
-  }) {
+      lifePointsEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'lifePoints',
         value: value,
-        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
       lifePointsGreaterThan(
-    double? value, {
+    int? value, {
     bool include = false,
-    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'lifePoints',
         value: value,
-        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
       lifePointsLessThan(
-    double? value, {
+    int? value, {
     bool include = false,
-    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'lifePoints',
         value: value,
-        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
       lifePointsBetween(
-    double? lower,
-    double? upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -696,7 +687,6 @@ extension PokemonDataQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        epsilon: epsilon,
       ));
     });
   }
@@ -1584,7 +1574,7 @@ extension PokemonDataQueryProperty
     });
   }
 
-  QueryBuilder<PokemonData, double?, QQueryOperations> lifePointsProperty() {
+  QueryBuilder<PokemonData, int?, QQueryOperations> lifePointsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lifePoints');
     });
