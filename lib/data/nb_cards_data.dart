@@ -6,6 +6,7 @@ class NbCardsData{
   int nb;
 
   NbCardsData({
+    this.pokemon,
     this.nb = 0
   });
 }
