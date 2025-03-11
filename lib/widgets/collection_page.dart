@@ -29,7 +29,7 @@ class CollectionPage extends ConsumerWidget {
 
           return GestureDetector(
             onTap: () => _showZoomDialog(context, pokemon),
-            child: PokemonCard(cardSize: 200, data: pokemon),
+            child: PokemonCard(cardSize: 250, data: pokemon),
           );
         },
       ),
@@ -45,19 +45,19 @@ class CollectionPage extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.network(pokemon.imageUrl, fit: BoxFit.cover),
+              Image.network(pokemon.imageUrl, fit: BoxFit.cover, height: 300, width: 300),
               SizedBox(height: 10),
               Text(
                 pokemon.name,
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(color: Colors.white, fontSize: 50),
               ),
               Text(
                 "Pokedex ID: ${pokemon.pokedexId}",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 30),
               ),
               Text(
                 "Points de vie: ${pokemon.lifePoints}",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 30),
               ),
               SizedBox(height: 10),
               ElevatedButton(
