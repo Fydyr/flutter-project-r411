@@ -1,14 +1,10 @@
+import 'package:flutter_project_r411/database/database_service.dart';
 import 'package:isar/isar.dart';
 import 'pokemon_data.dart';
-import 'package:path_provider/path_provider.dart';
+import '../database_service.dart';
 
 class PokemonDatabase{
-  static late Isar isar;
-
-  static Future<void> initDatabase() async {
-    final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open([PokemonDataSchema], directory: dir.path);
-  }
+  static Isar get isar => DatabaseService.isar;
 
   // create new pokemon
   static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, double size, double weight, int idAttack, int numberPokemon) async {

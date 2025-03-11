@@ -1,14 +1,9 @@
 import 'package:isar/isar.dart';
+import '../database_service.dart';
 import 'type_image_data.dart';
-import 'package:path_provider/path_provider.dart';
 
 class TypeImageDatabase{
-  static late Isar isar;
-
-  static Future<void> initDatabase() async {
-    final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open([TypeImageDataSchema], directory: dir.path);
-  }
+  static Isar get isar => DatabaseService.isar;
 
   // create new type
   static Future<void> addType(String name, int typeId, String imageLink) async {

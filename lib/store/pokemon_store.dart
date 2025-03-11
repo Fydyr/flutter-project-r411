@@ -38,18 +38,6 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
           weight: pokemon["weight"].toDouble(),
           imageUrl: (pokemon["imageUrl"] != null)? pokemon["imageUrl"] : ""
         ));
-        PokemonDatabase.addPokemon(
-            pokemon["id"],
-            pokemon["name"],
-            pokemon["lifePoints"],
-            pokemon["pokedexId"],
-            pokemon["typeId1"],
-            (pokemon["imageUrl"] != null)? pokemon["imageUrl"] : "",
-            pokemon["size"].toDouble(),
-            pokemon["weight"].toDouble(),
-            pokemon["attackId"],
-            0
-        );
       });
 
       state = state.copyWith(allPokemons: pokemons);
