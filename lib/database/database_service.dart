@@ -14,7 +14,7 @@ class DatabaseService {
     final Directory dir = await getApplicationDocumentsDirectory();
 
     isar = await Isar.open(
-      [UserDataSchema, PokemonDataSchema, TypeImageDataSchema], // Ajouter ici toutes les tables
+      [UserDataSchema, PokemonDataSchema, TypeImageDataSchema, AttackDataSchema], // Ajouter ici toutes les tables
       directory: dir.path,
     );
   }
