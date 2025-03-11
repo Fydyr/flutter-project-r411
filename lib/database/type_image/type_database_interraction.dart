@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'type_image_data.dart';
 import 'package:path_provider/path_provider.dart';
 
-class UserDatabase{
+class TypeImageDatabase{
   static late Isar isar;
 
   static Future<void> initDatabase() async {
