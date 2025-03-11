@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'pokemon_data.dart';
 import 'package:path_provider/path_provider.dart';
 
-class UserDatabase{
+class PokemonDatabase{
   static late Isar isar;
 
   static Future<void> initDatabase() async {
@@ -11,7 +11,7 @@ class UserDatabase{
   }
 
   // create new pokemon
-  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, int size, int weight, int idAttack, int numberPokemon) async {
+  static Future<void> addPokemon(int idPoke, String name, int lifePoints, int pokedexId, int type, String imageURL, double size, double weight, int idAttack, int numberPokemon) async {
     final newPokemon = PokemonData()
       ..idPoke = idPoke
       ..name = name

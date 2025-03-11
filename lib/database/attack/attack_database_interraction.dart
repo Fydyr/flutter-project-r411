@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'attack_data.dart';
 import 'package:path_provider/path_provider.dart';
 
-class UserDatabase{
+class AttackDatabase{
   static late Isar isar;
 
   static Future<void> initDatabase() async {

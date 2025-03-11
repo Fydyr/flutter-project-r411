@@ -55,7 +55,7 @@ const PokemonDataSchema = CollectionSchema(
     r'size': PropertySchema(
       id: 7,
       name: r'size',
-      type: IsarType.long,
+      type: IsarType.double,
     ),
     r'type': PropertySchema(
       id: 8,
@@ -65,7 +65,7 @@ const PokemonDataSchema = CollectionSchema(
     r'weight': PropertySchema(
       id: 9,
       name: r'weight',
-      type: IsarType.long,
+      type: IsarType.double,
     )
   },
   estimateSize: _pokemonDataEstimateSize,
@@ -116,9 +116,9 @@ void _pokemonDataSerialize(
   writer.writeString(offsets[4], object.name);
   writer.writeLong(offsets[5], object.numberPokemon);
   writer.writeLong(offsets[6], object.pokedexId);
-  writer.writeLong(offsets[7], object.size);
+  writer.writeDouble(offsets[7], object.size);
   writer.writeLong(offsets[8], object.type);
-  writer.writeLong(offsets[9], object.weight);
+  writer.writeDouble(offsets[9], object.weight);
 }
 
 PokemonData _pokemonDataDeserialize(
@@ -136,9 +136,9 @@ PokemonData _pokemonDataDeserialize(
   object.name = reader.readStringOrNull(offsets[4]);
   object.numberPokemon = reader.readLongOrNull(offsets[5]);
   object.pokedexId = reader.readLongOrNull(offsets[6]);
-  object.size = reader.readLongOrNull(offsets[7]);
+  object.size = reader.readDoubleOrNull(offsets[7]);
   object.type = reader.readLongOrNull(offsets[8]);
-  object.weight = reader.readLongOrNull(offsets[9]);
+  object.weight = reader.readDoubleOrNull(offsets[9]);
   return object;
 }
 
@@ -164,11 +164,11 @@ P _pokemonDataDeserializeProp<P>(
     case 6:
       return (reader.readLongOrNull(offset)) as P;
     case 7:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readDoubleOrNull(offset)) as P;
     case 8:
       return (reader.readLongOrNull(offset)) as P;
     case 9:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readDoubleOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1005,46 +1005,54 @@ extension PokemonDataQueryFilter
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> sizeEqualTo(
-      int? value) {
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'size',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> sizeGreaterThan(
-    int? value, {
+    double? value, {
     bool include = false,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'size',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> sizeLessThan(
-    int? value, {
+    double? value, {
     bool include = false,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'size',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> sizeBetween(
-    int? lower,
-    int? upper, {
+    double? lower,
+    double? upper, {
     bool includeLower = true,
     bool includeUpper = true,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -1053,6 +1061,7 @@ extension PokemonDataQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+        epsilon: epsilon,
       ));
     });
   }
@@ -1145,47 +1154,55 @@ extension PokemonDataQueryFilter
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> weightEqualTo(
-      int? value) {
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'weight',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition>
       weightGreaterThan(
-    int? value, {
+    double? value, {
     bool include = false,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'weight',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> weightLessThan(
-    int? value, {
+    double? value, {
     bool include = false,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'weight',
         value: value,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<PokemonData, PokemonData, QAfterFilterCondition> weightBetween(
-    int? lower,
-    int? upper, {
+    double? lower,
+    double? upper, {
     bool includeLower = true,
     bool includeUpper = true,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -1194,6 +1211,7 @@ extension PokemonDataQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+        epsilon: epsilon,
       ));
     });
   }
@@ -1580,7 +1598,7 @@ extension PokemonDataQueryProperty
     });
   }
 
-  QueryBuilder<PokemonData, int?, QQueryOperations> sizeProperty() {
+  QueryBuilder<PokemonData, double?, QQueryOperations> sizeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'size');
     });
@@ -1592,7 +1610,7 @@ extension PokemonDataQueryProperty
     });
   }
 
-  QueryBuilder<PokemonData, int?, QQueryOperations> weightProperty() {
+  QueryBuilder<PokemonData, double?, QQueryOperations> weightProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'weight');
     });

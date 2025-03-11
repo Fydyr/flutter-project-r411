@@ -11,8 +11,8 @@ class PokemonData{
   int? pokedexId;
   int? type;
   String? imageURL;
-  int? size;
-  int? weight;
+  double? size;
+  double? weight;
   int? idAttack;
   int? numberPokemon;
 }

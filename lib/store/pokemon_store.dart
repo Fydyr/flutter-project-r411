@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter_project_r411/data/pokemon_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
+import '../database/database_service.dart';
+import '../database/pokemon_database/pokemon_database_interraction.dart';
 
 final pokemonStoreProvider =
 StateNotifierProvider<PokemonStore, PokemonStoreState>((ref) {
@@ -36,6 +38,18 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
           weight: pokemon["weight"].toDouble(),
           imageUrl: (pokemon["imageUrl"] != null)? pokemon["imageUrl"] : ""
         ));
+        PokemonDatabase.addPokemon(
+            pokemon["id"],
+            pokemon["name"],
+            pokemon["lifePoints"],
+            pokemon["pokedexId"],
+            pokemon["typeId1"],
+            (pokemon["imageUrl"] != null)? pokemon["imageUrl"] : "",
+            pokemon["size"].toDouble(),
+            pokemon["weight"].toDouble(),
+            pokemon["attackId"],
+            0
+        );
       });
 
       state = state.copyWith(allPokemons: pokemons);
