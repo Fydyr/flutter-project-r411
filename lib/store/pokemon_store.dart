@@ -96,8 +96,12 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
 
   List<PokemonData> getNLastCards(int count) {
     List<PokemonData> list = [];
-    for (var i = count-1; i < -1; i++) {
-      list.add(state.pokemons.elementAt(state.pokemons.length-1 + i));
+    for (int i = count; i > 0; i--) {
+      list.add(
+        state.pokemons.elementAt(
+          (state.pokemons.length) - i
+        )
+      );
     }
     return list;
   }
