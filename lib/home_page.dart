@@ -7,6 +7,7 @@ import 'widgets/button.dart';
 import 'widgets/card_pack.dart';
 import 'package:flutter_project_r411/widgets/collection_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_project_r411/widgets/drawn_cards_page.dart';
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key, required this.title});
@@ -31,9 +32,9 @@ class MyHomePage extends ConsumerWidget {
                 Button(
                   colorBackground: Colors.blueGrey,
                   colorText: Colors.white,
-                  text: "Deck",
+                  text: "Collection",
                   height: 70,
-                  width: 128,
+                  width: 170,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -42,20 +43,25 @@ class MyHomePage extends ConsumerWidget {
                   },
                 ),
                 Button(
-                    colorBackground: Colors.blueGrey,
-                    colorText: Colors.white,
-                    text: "get1",
-                    height: 70,
-                    width: 128,
-                    onPressed: () {store.getPokemonCardId(37);}),
-                Button(
                   colorBackground: Colors.blueGrey,
                   colorText: Colors.white,
                   text: "Tirer 5 cartes",
                   height: 70,
-                  width: 130,
+                  width: 170,
                   onPressed: () {
-                    store.getRandomPokemonCards(5);}),
+                    store.getRandomPokemonCards(5);
+                    final List<PokemonData> drawnCards = store.getNLastCards(5);
+
+                    print("Cartes tirées : ${drawnCards.map((p) => p.name).toList()}"); // Debug
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DrawnCardsPage(drawnCards: drawnCards),
+                      ),
+                    );
+                  }
+                ),
               ],
             ),
           ],
