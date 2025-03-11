@@ -1,4 +1,4 @@
-import 'app_const.dart';
+import '../app_const.dart';
 
 class PokemonData{
   int id;

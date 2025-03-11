@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:flutter_project_r411/pokemon_data.dart';
+import 'package:flutter_project_r411/data/pokemon_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
 
@@ -92,6 +92,14 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
     for (var id in randomIds) {
       getPokemonCardId(id);
     }
+  }
+
+  List<PokemonData> getNLastCards(int count) {
+    List<PokemonData> list = [];
+    for (var i = count-1; i < -1; i++) {
+      list.add(state.pokemons.elementAt(state.pokemons.length-1 + i));
+    }
+    return list;
   }
 
   String getUrlImagePokemon(int id) {
