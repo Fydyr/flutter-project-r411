@@ -11,10 +11,10 @@ class CollectionPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, final WidgetRef ref) {
     final PokemonStoreState state = ref.watch(pokemonStoreProvider);
-    final List<PokemonData> deck = state.pokemons;
+    final List<PokemonData> collection = state.pokemons;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Deck Pokémon")),
+      appBar: AppBar(title: Text("Collection Pokémon")),
       body: GridView.builder(
         padding: EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -23,9 +23,9 @@ class CollectionPage extends ConsumerWidget {
           mainAxisSpacing: 10,
           childAspectRatio: 3 / 4, // Ajuster la taille des cartes
         ),
-        itemCount: deck.length,
+        itemCount: collection.length,
         itemBuilder: (context, index) {
-          final pokemon = deck[index];
+          final pokemon = collection[index];
 
           return GestureDetector(
             onTap: () => _showZoomDialog(context, pokemon),
