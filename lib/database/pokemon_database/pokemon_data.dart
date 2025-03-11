@@ -7,12 +7,12 @@ class PokemonData{
   Id id = Isar.autoIncrement;
   int? idPoke;
   String? name;
-  int? lifePoints;
+  double? lifePoints;
   int? pokedexId;
   int? type;
   String? imageURL;
-  int? size;
-  int? weight;
+  double? size;
+  double? weight;
   int? idAttack;
   int? numberPokemon;
 }
