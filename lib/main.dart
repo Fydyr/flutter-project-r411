@@ -3,12 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'home_page.dart';
 import 'database/database_service.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseService.initDatabase();
-  runApp(ProviderScope(child: const MyApp()));
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,4 +18,10 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Pokemon: Card Rampage'),
     );
   }
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseService.initDatabase();
+  runApp(ProviderScope(child: const MyApp()));
 }
