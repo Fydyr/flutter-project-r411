@@ -17,7 +17,7 @@ class TypeImageDatabase{
       await isar.typeImageDatas.put(newType);
     });
 
-    print("pokemon add to your collection with ID: ${newType.id}");
+    print("Add type to database with ID: ${newType.id}");
   }
 
   /// Fetch all types from the database
