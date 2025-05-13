@@ -4,7 +4,6 @@ import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'store/pokemon_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
-import 'widgets/card_pack.dart';
 import 'package:flutter_project_r411/widgets/collection_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/widgets/drawn_cards_page.dart';
