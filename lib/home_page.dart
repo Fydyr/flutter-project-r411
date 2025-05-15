@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_r411/data/pokemon_data.dart';
+import 'package:flutter_project_r411/store/collection_store.dart';
+import 'package:flutter_project_r411/store/pokemon_store.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
-import 'store/pokemon_store.dart';
 import 'widgets/background.dart';
 import 'widgets/button.dart';
 import 'package:flutter_project_r411/widgets/collection_page.dart';
@@ -14,7 +15,8 @@ class MyHomePage extends ConsumerWidget {
   final String title;
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final PokemonStore store = ref.read(pokemonStoreProvider.notifier);
+    final PokemonStore pokemonStore = ref.read(pokemonStoreProvider.notifier);
+    final CollectionStore collectionStore = ref.read(collectionStoreProvider.notifier);
     final PokemonStoreState state = ref.watch(pokemonStoreProvider);
 
     return Stack(
@@ -48,8 +50,9 @@ class MyHomePage extends ConsumerWidget {
                   height: 70,
                   width: 170,
                   onPressed: () {
-                    store.getRandomPokemonCards(5);
-                    final List<PokemonData> drawnCards = store.getNLastCards(5);
+                    pokemonStore.getRandomPokemonCards(5);
+                    collectionStore.addNCardsToCollection(5);
+                    final List<PokemonData> drawnCards = pokemonStore.getNLastCards(5);
 
                     print("Cartes tirées : ${drawnCards.map((p) => p.name).toList()}"); // Debug
 

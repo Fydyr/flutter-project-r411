@@ -1,19 +1,23 @@
 import 'dart:math';
 import 'package:flutter_project_r411/data/pokemon_data.dart';
+import 'package:flutter_project_r411/store/collection_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project_r411/api/api_helper.dart';
+import 'package:isar/isar.dart';
 import '../database/database_service.dart';
 import '../database/pokemon_database/pokemon_database_interraction.dart';
+import 'package:flutter_project_r411/store/collection_store.dart';
+
 
 final pokemonStoreProvider =
 StateNotifierProvider<PokemonStore, PokemonStoreState>((ref) {
   var apiHelper = ref.watch(apiHelperProvider);
-  return PokemonStore(api: apiHelper);
+  return PokemonStore(api: apiHelper, );
 });
 
 // Cette classe permet de gérer le cache des équipes
 class PokemonStore extends StateNotifier<PokemonStoreState> {
-  PokemonStore({required this.api}) : super(PokemonStoreState.init()) {
+  PokemonStore({required this.api,}) : super(PokemonStoreState.init()) {
     // Au démarrage, charger les pokémons depuis la BDD puis depuis l'API
     loadPokemonsFromDatabase().then((_) {
       getPokemonCards();
@@ -119,6 +123,10 @@ class PokemonStore extends StateNotifier<PokemonStoreState> {
     } catch (e) {
       print("Error saving pokemon to database: $e");
     }
+  }
+
+  PokemonData getById(int id) {
+    return state.allPokemons[id-1];
   }
 
   void getPokemonTypes(){

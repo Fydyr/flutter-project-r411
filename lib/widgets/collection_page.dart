@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_r411/data/pokemon_data.dart';
+import 'package:flutter_project_r411/store/collection_store.dart';
+import 'package:flutter_project_r411/store/pokemon_store.dart';
 import 'package:flutter_project_r411/widgets/pokemon_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../store/pokemon_store.dart';
 
 class CollectionPage extends ConsumerWidget {
   CollectionPage({super.key});
 
   @override
   Widget build(BuildContext context, final WidgetRef ref) {
-    final PokemonStoreState state = ref.watch(pokemonStoreProvider);
-    final List<PokemonData> collection = state.pokemons;
+    final PokemonStore pokemonStore = ref.watch(pokemonStoreProvider.notifier);
+    final CollectionStore collectionStore = ref.watch(collectionStoreProvider.notifier);
+    final CollectionStoreState state = ref.watch(collectionStoreProvider);
+    final List<MapEntry<int, int>> collection = state.collection.entries.toList();
 
     return Scaffold(
       appBar: AppBar(title: Text("Collection Pokémon")),
@@ -28,8 +30,13 @@ class CollectionPage extends ConsumerWidget {
           final pokemon = collection[index];
 
           return GestureDetector(
-            onTap: () => _showZoomDialog(context, pokemon),
-            child: PokemonCard(cardSize: 250, data: pokemon),
+            onTap: () => _showZoomDialog(context, pokemonStore.getById(pokemon.key)),
+            child: Column(
+              children: [
+                PokemonCard(cardSize: MediaQuery.sizeOf(context).width*0.57, data: pokemonStore.getById(pokemon.key)),
+                Text("Cartes piochées: " + pokemon.value.toString())
+              ],
+            ),
           );
         },
       ),
