@@ -33,7 +33,7 @@ class CollectionPage extends ConsumerWidget {
             onTap: () => _showZoomDialog(context, pokemonStore.getById(pokemon.key)),
             child: Column(
               children: [
-                PokemonCard(cardSize: MediaQuery.sizeOf(context).width*0.57, data: pokemonStore.getById(pokemon.key)),
+                PokemonCard(cardSize: MediaQuery.sizeOf(context).width*0.55, data: pokemonStore.getById(pokemon.key)),
                 Text("Cartes piochées: " + pokemon.value.toString())
               ],
             ),

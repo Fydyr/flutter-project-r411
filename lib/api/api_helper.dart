@@ -12,13 +12,13 @@ class ApiHelper {
   final Dio dio;
 
   Future<Response> getPokemonCards() async {
-    final url = 'http://88.173.86.254:37391/pokemon-cards/';
+    final url = 'http://kinator.fr:37391/pokemon-cards/';
 
     return dio.get(url);
   }
 
   Future<Response> getPokemonCardId(int id) async {
-    final url = 'http://88.173.86.254:37391/pokemon-cards/$id';
+    final url = 'http://kinator.fr:37391/pokemon-cards/$id';
 
     final res = dio.get(url);
     res.then((r) {print(r.data);});
@@ -26,13 +26,13 @@ class ApiHelper {
   }
 
   Future<Response> getPokemonTypes() async {
-    final url = 'http://88.173.86.254:37391/pokemon-types';
+    final url = 'http://kinator.fr:37391/pokemon-types';
 
     return dio.get(url);
   }
 
   void getPokemonTypesId(int id) async {
-    final url = 'http://88.173.86.254:37391/pokemon-types/$id';
+    final url = 'http://kinator.fr:37391/pokemon-types/$id';
 
     final Future<Response> response = dio.get(url);
     response.then((r) {
@@ -51,7 +51,7 @@ class ApiHelper {
   }
 
   void getPokemonAttacks() async {
-    final url = 'http://88.173.86.254:37391/pokemon-attacks';
+    final url = 'http://kinator.fr:37391/pokemon-attacks';
 
     final Future<Response> response = dio.get(url);
     response.then((r) {
@@ -70,7 +70,7 @@ class ApiHelper {
   }
 
   void getPokemonAttacksId(int id) async {
-    final url = 'http://88.173.86.254:37391/pokemon-attacks/$id';
+    final url = 'http://kinator.fr:37391/pokemon-attacks/$id';
 
     final Future<Response> response = dio.get(url);
     response.then((r) {
@@ -89,7 +89,7 @@ class ApiHelper {
   }
 
   void getCollections() async {
-    final url = 'http://88.173.86.254:37391/decks';
+    final url = 'http://kinator.fr:37391/decks';
 
     final Future<Response> response = dio.get(url);
     response.then((r) {
@@ -108,7 +108,7 @@ class ApiHelper {
   }
 
   void getCollectionId(int id) async {
-    final url = 'http://88.173.86.254:37391/decks/$id';
+    final url = 'http://kinator.fr:37391/decks/$id';
 
     final Future<Response> response = dio.get(url);
 
@@ -128,7 +128,7 @@ class ApiHelper {
   }
 
   void createUser(String email, String password) async {
-    final url = 'http://88.173.86.254:37391/users';
+    final url = 'http://kinator.fr:37391/users';
 
     final Future<Response> response =
         dio.post(url, data: {"email": email, "password": password});
@@ -147,7 +147,7 @@ class ApiHelper {
   }
 
   void loginUser(String email, String password) async {
-    final url = 'http://88.173.86.254:37391/users/login';
+    final url = 'http://kinator.fr:37391/users/login';
 
     final Future<Response> response =
         dio.post(url, data: {"email": email, "password": password});
@@ -166,7 +166,7 @@ class ApiHelper {
   }
 
   void getUsers() async {
-    final url = 'http://88.173.86.254:37391/users';
+    final url = 'http://kinator.fr:37391/users';
 
     final Future<Response> response = dio.get(url);
 
@@ -186,7 +186,7 @@ class ApiHelper {
 
   void postCollection(
       String token, String name, int ownerId, List<int> pokemonIds) async {
-    final url = 'http://88.173.86.254:37391/decks';
+    final url = 'http://kinator.fr:37391/decks';
 
     final Future<Response> response = dio.post(url,
         data: {"name": name, "owner_id": ownerId, "pokemon_ids": pokemonIds},
@@ -206,7 +206,7 @@ class ApiHelper {
   }
 
   void getDeckId(int id) async {
-    final url = 'http://88.173.86.254:37391/decks/$id';
+    final url = 'http://kinator.fr:37391/decks/$id';
 
     final Future<Response> response = dio.get(url);
     response.then((r) {
@@ -224,7 +224,7 @@ class ApiHelper {
   }
 
   void updateDeck(String token, int id, String name, int ownerId, List<int> pokemonIds) async {
-    final url = 'http://88.173.86.254:37391/decks/$id';
+    final url = 'http://kinator.fr:37391/decks/$id';
 
     final Future<Response> response = dio.put(url,
         data: {"name": name, "owner_id": ownerId, "pokemon_ids": pokemonIds},
@@ -232,7 +232,7 @@ class ApiHelper {
   }
 
   void deleteDeck(String token, int id) async {
-    final url = 'http://88.173.86.254:37391/decks/$id';
+    final url = 'http://kinator.fr:37391/decks/$id';
 
     final Future<Response> response = dio.delete(url,
         options: Options(headers: {"Authorization": "Bearer $token"}));
