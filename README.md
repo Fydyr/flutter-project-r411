@@ -1007,7 +1007,7 @@ Run flutter-project-r411 using the following command:
 **- List any resources, contributors, inspiration, etc. here.**
 
 **List of Api use :**
-- kinator.fr
+- https://kinator.fr
 - https://raw.githubusercontent.com/PokeAPI
 
 *For the application to work, contact Julien (kinatorrexrusse) on discord*
